@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>ansible服务 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="安装Ansible和设置控制节点：  在linux1上安装Ansible，可以使用以下命令： 12sudo apt updatesudo apt install ansible  配置Ansible的主机清单文件。在控制节点上使用vim编辑文件&#x2F;etc&#x2F;ansible&#x2F;hosts，添加受控节点的IP地址或主机名。例如： 12345678910111213[web_se">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ansible服务">
+<meta property="og:url" content="http://example.com/posts/1001/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="安装Ansible和设置控制节点：  在linux1上安装Ansible，可以使用以下命令： 12sudo apt updatesudo apt install ansible  配置Ansible的主机清单文件。在控制节点上使用vim编辑文件&#x2F;etc&#x2F;ansible&#x2F;hosts，添加受控节点的IP地址或主机名。例如： 12345678910111213[web_se">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-04-21T15:55:04.000Z">
+<meta property="article:modified_time" content="2023-04-21T16:00:08.762Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-ansible服务" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/posts/1001/" class="article-date">
+  <time class="dt-published" datetime="2023-04-21T15:55:04.000Z" itemprop="datePublished">2023-04-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      ansible服务
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>安装Ansible和设置控制节点：</p>
+<ol>
+<li><p>在linux1上安装Ansible，可以使用以下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install ansible</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置Ansible的主机清单文件。在控制节点上使用vim编辑文件&#x2F;etc&#x2F;ansible&#x2F;hosts，添加受控节点的IP地址或主机名。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[web_servers]</span><br><span class="line">linux2 ansible_host=192.168.0.2</span><br><span class="line">linux3 ansible_host=192.168.0.3</span><br><span class="line">linux4 ansible_host=192.168.0.4</span><br><span class="line"></span><br><span class="line">[database_servers]</span><br><span class="line">linux5 ansible_host=192.168.0.5</span><br><span class="line">linux6 ansible_host=192.168.0.6</span><br><span class="line">linux7 ansible_host=192.168.0.7</span><br><span class="line"></span><br><span class="line">[all:vars]</span><br><span class="line">ansible_user=your_user_name</span><br><span class="line">ansible_ssh_private_key_file=/path/to/your/private/key</span><br></pre></td></tr></table></figure>
+
+<p>注意：将your_user_name和&#x2F;path&#x2F;to&#x2F;your&#x2F;private&#x2F;key替换为实际的用户名和私钥路径。</p>
+</li>
+<li><p>验证Ansible是否可以与所有受控节点通信。可以使用以下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ansible all -m ping</span><br></pre></td></tr></table></figure>
+
+<p>如果所有节点都响应pong，则表示成功。</p>
+<p>注意：如果您使用的是不同的SSH端口号，可以在清单文件中使用ansible_ssh_port变量指定端口号。</p>
+</li>
+</ol>
+<p>使用Ansible进行自动化运维：</p>
+<p>现在您已经设置好了Ansible控制节点和受控节点，可以开始使用Ansible进行自动化运维任务。以下是一些例子：</p>
+<ol>
+<li><p>运行命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ansible all -a &quot;ls -l /var/log&quot;</span><br></pre></td></tr></table></figure>
+
+<p>将在所有受控节点上运行命令“ls -l &#x2F;var&#x2F;log”。</p>
+</li>
+<li><p>复制文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ansible all -m copy -a &quot;src=/path/to/local/file dest=/path/to/remote/file&quot;</span><br></pre></td></tr></table></figure>
+
+<p>将在所有受控节点上复制本地文件到远程目录。</p>
+</li>
+<li><p>安装软件包</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ansible all -m apt -a &quot;name=nginx state=present&quot;</span><br></pre></td></tr></table></figure>
+
+<p>将在所有受控节点上安装Nginx软件包。</p>
+</li>
+</ol>
+<p>以上只是一些简单的例子，Ansible可以完成更复杂的任务，包括配置管理、自动化部署、容器编排等等。建议您参考官方文档学习更多操作。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/posts/1001/" data-id="clgrha81b0000dqs61ubd461b" data-title="ansible服务" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/posts/1004/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          tomcat服务
+        
+      </div>
+    </a>
+  
+  
+    <a href="/posts/1002/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">dns服务</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/posts/1002/">apache2服务器</a>
+          </li>
+        
+          <li>
+            <a href="/posts/1004/">tomcat服务</a>
+          </li>
+        
+          <li>
+            <a href="/posts/1001/">ansible服务</a>
+          </li>
+        
+          <li>
+            <a href="/posts/1002/">dns服务</a>
+          </li>
+        
+          <li>
+            <a href="/posts/1003/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
