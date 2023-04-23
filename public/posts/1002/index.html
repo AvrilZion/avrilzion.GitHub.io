@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>dns服务 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="2. DNS服务2.1 防火墙设置在Ubuntu下，可以使用 ufw 工具来管理防火墙规则。首先，需要启用防火墙，并设置默认规则为拒绝所有入站流量。 12sudo ufw enablesudo ufw default deny incoming  然后，需要允许 DNS 服务的流量通过防火墙。假设 DNS 服务使用的端口为 53（默认情况下是这个端口），则可以使用以下命令来放行该端口： 12sud">
+<meta property="og:type" content="article">
+<meta property="og:title" content="dns服务">
+<meta property="og:url" content="http://example.com/posts/1002/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="2. DNS服务2.1 防火墙设置在Ubuntu下，可以使用 ufw 工具来管理防火墙规则。首先，需要启用防火墙，并设置默认规则为拒绝所有入站流量。 12sudo ufw enablesudo ufw default deny incoming  然后，需要允许 DNS 服务的流量通过防火墙。假设 DNS 服务使用的端口为 53（默认情况下是这个端口），则可以使用以下命令来放行该端口： 12sud">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.imgur.com/3Edd6wh.png">
+<meta property="article:published_time" content="2023-04-21T15:32:43.000Z">
+<meta property="article:modified_time" content="2023-04-22T23:19:14.294Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/3Edd6wh.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-dns服务" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/posts/1002/" class="article-date">
+  <time class="dt-published" datetime="2023-04-21T15:32:43.000Z" itemprop="datePublished">2023-04-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      dns服务
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="2-DNS服务"><a href="#2-DNS服务" class="headerlink" title="2. DNS服务"></a>2. DNS服务</h3><h4 id="2-1-防火墙设置"><a href="#2-1-防火墙设置" class="headerlink" title="2.1 防火墙设置"></a>2.1 防火墙设置</h4><p>在Ubuntu下，可以使用 <code>ufw</code> 工具来管理防火墙规则。首先，需要启用防火墙，并设置默认规则为拒绝所有入站流量。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw enable</span><br><span class="line">sudo ufw default deny incoming</span><br></pre></td></tr></table></figure>
+
+<p>然后，需要允许 DNS 服务的流量通过防火墙。假设 DNS 服务使用的端口为 53（默认情况下是这个端口），则可以使用以下命令来放行该端口：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw allow 53/tcp</span><br><span class="line">sudo ufw allow 53/udp</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-NTP服务设置"><a href="#2-2-NTP服务设置" class="headerlink" title="2.2 NTP服务设置"></a>2.2 NTP服务设置</h4><p>使用 <code>chrony</code> 工具来配置NTP服务。首先，在linux1上安装 <code>chrony</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install chrony</span><br></pre></td></tr></table></figure>
+
+<p>然后，在 <code>/etc/chrony/chrony.conf</code> 文件中添加以下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">allow 192.168.0.0/24  # 允许本地网络中的主机使用NTP服务</span><br></pre></td></tr></table></figure>
+
+<p>最后，启动 <code>chrony</code> 服务并将其设置为开机启动：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start chrony</span><br><span class="line">sudo systemctl enable chrony</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-SSH认证设置"><a href="#2-3-SSH认证设置" class="headerlink" title="2.3 SSH认证设置"></a>2.3 SSH认证设置</h4><p>为了禁用密码认证，我们需要使用公钥认证。首先，在每个Linux主机上生成公私钥对：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure>
+
+<p>然后，在每个主机上将公钥添加到授权文件中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+
+<p>接下来，我们需要修改SSH配置文件 <code>/etc/ssh/sshd_config</code> ，禁用密码认证。找到以下两个配置项，并将其值改为 <code>no</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PasswordAuthentication no</span><br><span class="line">ChallengeResponseAuthentication no</span><br></pre></td></tr></table></figure>
+
+<p>最后，重启 SSH 服务：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart sshd</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-DNS设置"><a href="#2-4-DNS设置" class="headerlink" title="2.4 DNS设置"></a>2.4 DNS设置</h4><p>首先，在linux1上安装 <code>bind</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install bind9</span><br></pre></td></tr></table></figure>
+
+<p>然后，在 <code>/etc/bind/named.conf.options</code> 文件中配置 DNS 服务器：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">options &#123;</span><br><span class="line">    directory &quot;/var/cache/bind&quot;;</span><br><span class="line">    recursion yes;</span><br><span class="line">    allow-query &#123; any; &#125;;</span><br><span class="line">    forwarders &#123;</span><br><span class="line">        8.8.8.8; # Google DNS</span><br><span class="line">        8.8.4.4;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">zone &quot;skills.lan&quot; IN &#123;</span><br><span class="line">    type master;</span><br><span class="line">    file &quot;/etc/bind/db.skills.lan&quot;;</span><br><span class="line">    allow-update &#123; none; &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">zone &quot;0.168.192.in-addr.arpa&quot; IN &#123;</span><br><span class="line">    type master;</span><br><span class="line">    file &quot;/etc/bind/db.192&quot;;</span><br><span class="line">    allow-update &#123; none; &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>这个配置文件中，我们允许任何主机进行 DNS 查询，同时将未知的 DNS 请求转发给 Google DNS 服务器。我们还配置了两个 DNS 区域：<code>skills.lan</code> 和 <code>0.168.192.in-addr.arpa</code>（这是内部网络的反向解析区域）。这些区域的信息将存储在 <code>/etc/bind/db.skills.lan</code> 和 <code>/etc/bind/db.192</code> 文件中。</p>
+<p>现在，我们需要创建这些区域文件。<br>首先，创建<code>/etc/bind/db.skills.lan</code> 文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$TTL 3H</span><br><span class="line">@       IN SOA  linux1.skills.lan. root.linux1.skills.lan. (</span><br><span class="line">                1       ; Serial</span><br><span class="line">                3H      ; Refresh</span><br><span class="line">                15M     ; Retry</span><br><span class="line">                1W      ; Expire</span><br><span class="line">                1D      ; Minimum TTL</span><br><span class="line">)</span><br><span class="line">        IN NS   linux1.skills.lan.</span><br><span class="line">        IN A    192.168.0.1</span><br><span class="line">linux1  IN A    192.168.0.1</span><br><span class="line">linux2  IN A    192.168.0.2</span><br></pre></td></tr></table></figure>
+
+<p>这个文件中定义了 <code>skills.lan</code> 区域的信息。第一行是 TTL（Time to Live），表示 DNS 记录在缓存中的时间。接下来的几行定义了区域的 SOA 记录和 NS 记录，以及三个主机的 A 记录。</p>
+<p>然后，创建 <code>/etc/bind/db.192</code> 文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$TTL 3H</span><br><span class="line">@       IN SOA  linux1.skills.lan. root.linux1.skills.lan. (</span><br><span class="line">                1       ; Serial</span><br><span class="line">                3H      ; Refresh</span><br><span class="line">                15M     ; Retry</span><br><span class="line">                1W      ; Expire</span><br><span class="line">                1D      ; Minimum TTL</span><br><span class="line">)</span><br><span class="line">        IN NS   linux1.skills.lan.</span><br><span class="line">        IN PTR  skills.lan.</span><br><span class="line">linux1  IN A    192.168.0.1</span><br><span class="line">linux2  IN A    192.168.0.2</span><br></pre></td></tr></table></figure>
+
+<p>这个文件中定义了内部网络的反向解析信息。第一行是 TTL，接下来的几行是 SOA 记录和 NS 记录，以及两个主机的 PTR（Pointer）记录，用于反向解析。</p>
+<p>最后，启动 <code>bind</code> 服务并将其设置为开机启动：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start bind9</span><br><span class="line">sudo systemctl enable bind9</span><br></pre></td></tr></table></figure>
+
+<p>然后，在linux2上也安装 <code>bind</code>，并将其配置为备用 DNS 服务器。配置方法类似于linux1，只需要将 <code>/etc/bind/named.conf.options</code> 中的 <code>forwarders</code> 改为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">forwarders &#123;</span><br><span class="line">    192.168.0.1; # 主DNS服务器</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-5-CA证书设置"><a href="#2-5-CA证书设置" class="headerlink" title="2.5 CA证书设置"></a>2.5 CA证书设置</h4><p>首先，在linux1上安装 <code>easy-rsa</code> 工具：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install easy-rsa</span><br></pre></td></tr></table></figure>
+
+<p>然后，使用 <code>easy-rsa</code> 工具初始化 CA（证书颁发机构）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/share/easy-rsa</span><br><span class="line">sudo ./easyrsa init-pki</span><br></pre></td></tr></table></figure>
+
+<p>接下来，生成 CA 证书和私钥：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./easyrsa build-ca</span><br></pre></td></tr></table></figure>
+
+<p>在生成证书和私钥时，需要输入一些信息，如国家、省份、城市、组织名称等。这些信息将出现在证书中。</p>
+<p>然后，创建服务器证书签名请求（CSR）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./easyrsa gen-req server nopass</span><br></pre></td></tr></table></figure>
+
+<p>这个命令将生成一个名为 <code>server.req</code> 的文件，其中包含服务器的公钥和一些其他信息。在生成 CSR 时，需要输入服务器的公共名称（Common Name），即 <code>skills.lan</code>。</p>
+<p>接下来，使用 CA签名服务器证书：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./easyrsa sign-req server server</span><br></pre></td></tr></table></figure>
+
+<p>这个命令将使用 CA 的私钥对 <code>server.req</code> 文件进行签名，生成一个名为 <code>server.crt</code> 的服务器证书文件。</p>
+<p>然后，将证书和私钥文件复制到 <code>/etc/ssl</code> 目录：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo cp pki/issued/server.crt /etc/ssl/certs/</span><br><span class="line">sudo cp pki/private/server.key /etc/ssl/private/</span><br></pre></td></tr></table></figure>
+
+<p>接下来，在 Apache2 中启用 SSL 模块：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo a2enmod ssl</span><br></pre></td></tr></table></figure>
+
+<p>然后，编辑 <code>/etc/apache2/sites-available/default-ssl.conf</code> 文件，配置 SSL 证书和私钥文件的路径：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SSLCertificateFile /etc/ssl/certs/server.crt</span><br><span class="line">SSLCertificateKeyFile /etc/ssl/private/server.key</span><br></pre></td></tr></table></figure>
+
+<p>然后，启用 SSL 站点：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo a2ensite default-ssl.conf</span><br></pre></td></tr></table></figure>
+
+<p>最后，重启 Apache2 服务：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart apache2</span><br></pre></td></tr></table></figure>
+
+<p>现在，访问 <code>https://linux1.skills.lan</code> 就可以看到证书信息了，浏览器不会出现警告信息。如果需要为其他 Linux 服务器颁发证书，可以使用类似的方式生成 CSR、签名证书，然后将证书和私钥复制到对应服务器的 <code>/etc/ssl</code> 目录即可。</p>
+<p>(4) 配置 DNS 服务器</p>
+<p>接下来，我们要配置 DNS 服务器，为所有 Linux 主机提供冗余的 DNS 正反向解析服务。在这个例子中，我们将使用 BIND9 作为 DNS 服务器软件。</p>
+<p>首先，在 <code>linux1</code> 上安装 BIND9：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install bind9 bind9utils bind9-doc</span><br></pre></td></tr></table></figure>
+
+<p>然后，编辑 BIND9 配置文件 <code>/etc/bind/named.conf.local</code>，添加以下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">zone &quot;skills.lan&quot; IN &#123;</span><br><span class="line">    type master;</span><br><span class="line">    file &quot;/etc/bind/db.skills.lan&quot;;</span><br><span class="line">    allow-update &#123; none; &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">zone &quot;1.168.192.in-addr.arpa&quot; IN &#123;</span><br><span class="line">    type master;</span><br><span class="line">    file &quot;/etc/bind/db.192.168.1&quot;;</span><br><span class="line">    allow-update &#123; none; &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>这段配置文件指定了 BIND9 的两个 DNS 区域：<code>skills.lan</code> 和 <code>1.168.192.in-addr.arpa</code>。<code>skills.lan</code> 区域用于域名解析，<code>1.168.192.in-addr.arpa</code> 区域用于 IP 地址反向解析。</p>
+<p>然后，创建两个区域文件 <code>/etc/bind/db.skills.lan</code> 和 <code>/etc/bind/db.192.168.1</code>：</p>
+<ul>
+<li><code>/etc/bind/db.skills.lan</code> 文件内容：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">;</span><br><span class="line">; BIND data file for local loopback interface</span><br><span class="line">;</span><br><span class="line">$TTL    604800</span><br><span class="line">@       IN      SOA     linux1.skills.lan. admin.skills.lan. (</span><br><span class="line">                     2023042001         ; Serial</span><br><span class="line">                         604800         ; Refresh</span><br><span class="line">                          86400         ; Retry</span><br><span class="line">                        2419200         ; Expire</span><br><span class="line">                         604800 )       ; Negative Cache TTL</span><br><span class="line">;</span><br><span class="line">@       IN      NS      linux1.skills.lan.</span><br><span class="line">@       IN      A       192.168.1.101</span><br><span class="line">linux1  IN      A       192.168.1.101</span><br><span class="line">linux2  IN      A       192.168.1.102</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>/etc/bind/db.192.168.1</code> 文件内容：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">;</span><br><span class="line">; BIND reverse data file for local loopback interface</span><br><span class="line">;</span><br><span class="line">$TTL    604800</span><br><span class="line">@       IN      SOA     linux1.skills.lan. admin.skills.lan. (</span><br><span class="line">                     2023042001         ; Serial</span><br><span class="line">                         604800         ; Refresh</span><br><span class="line">                          86400         ; Retry</span><br><span class="line">                        2419200         ; Expire</span><br><span class="line">                         604800 )       ; Negative Cache TTL</span><br><span class="line">;</span><br><span class="line">@       IN      NS      linux1.skills.lan.</span><br><span class="line">101     IN      PTR     linux1.skills.lan.</span><br><span class="line">102     IN      PTR     linux2.skills.lan.</span><br></pre></td></tr></table></figure>
+
+<p>这两个文件分别定义了 <code>skills.lan</code> 区域和 <code>1.168.192.in-addr.arpa</code> 区域的记录。</p>
+<p>最后，重启 BIND9 服务：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart bind9</span><br></pre></td></tr></table></figure>
+
+<p>现在，所有 Linux 主机都可以通过 <code>linux1</code> 和 <code>linux2</code> 进行 DNS 解析和反向解析了。如果 <code>linux1</code> 挂了，<code>linux2</code> 会自动接管 DNS 服务。</p>
+<p>(5) 配置 CA 服务器和证书</p>
+<p>最后，我们要配置 CA 服务器，并为 Linux 主机颁发证书。在这个例子中，我们将使用OpenSSL 作为 CA 服务器软件。</p>
+<p>首先，在 <code>linux1</code> 上安装 OpenSSL：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install openssl</span><br></pre></td></tr></table></figure>
+
+<p>然后，生成 CA 证书和私钥：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/ssl</span><br><span class="line">sudo mkdir CA</span><br><span class="line">cd CA</span><br><span class="line">sudo mkdir certs crl newcerts private</span><br><span class="line">sudo chmod 700 private</span><br><span class="line">sudo touch index.txt</span><br><span class="line">echo 1000 &gt; serial</span><br><span class="line">sudo openssl genrsa -aes256 -out private/ca.key.pem 4096</span><br><span class="line">sudo chmod 400 private/ca.key.pem</span><br><span class="line">sudo openssl req -config /etc/ssl/openssl.cnf \</span><br><span class="line">    -key private/ca.key.pem \</span><br><span class="line">    -new -x509 -days 3650 -sha256 -extensions v3_ca \</span><br><span class="line">    -out certs/ca.cert.pem</span><br><span class="line">sudo chmod 444 certs/ca.cert.pem</span><br></pre></td></tr></table></figure>
+
+<p>这段命令生成了一个名为 <code>ca.key.pem</code> 的私钥和一个名为 <code>ca.cert.pem</code> 的 CA 证书。私钥被加密以保护其安全性。接下来，我们需要将证书复制到其他 Linux 主机。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo scp /etc/ssl/CA/certs/ca.cert.pem user@linux2:/tmp/</span><br><span class="line">sudo scp /etc/ssl/CA/private/ca.key.pem user@linux2:/tmp/</span><br></pre></td></tr></table></figure>
+
+<p>这里的 <code>user</code> 是你在 <code>linux2</code> 主机上的用户名。</p>
+<p>然后，在 <code>linux2</code> 上创建一个名为 <code>skills.lan.cnf</code> 的配置文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[req]</span><br><span class="line">default_bits = 2048</span><br><span class="line">prompt = no</span><br><span class="line">default_md = sha256</span><br><span class="line">distinguished_name = dn</span><br><span class="line"></span><br><span class="line">[dn]</span><br><span class="line">C = CN</span><br><span class="line">ST = Beijing</span><br><span class="line">L = Beijing</span><br><span class="line">O = skills</span><br><span class="line">OU = system</span><br><span class="line">CN = skills.lan</span><br></pre></td></tr></table></figure>
+
+<p>这个配置文件用于创建证书签名请求。</p>
+<p>接下来，在 <code>linux2</code> 上生成一个证书签名请求：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo openssl req -new -config skills.lan.cnf -keyout skills.key -out skills.csr</span><br></pre></td></tr></table></figure>
+
+<p>这个命令将生成一个名为 <code>skills.key</code> 的私钥和一个名为 <code>skills.csr</code> 的证书签名请求。</p>
+<p>然后，将 <code>skills.csr</code> 文件复制到 <code>linux1</code> 上，并使用 <code>ca.cert.pem</code> 和 <code>ca.key.pem</code> 为证书签名请求签名：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo scp skills.csr user@linux1:/tmp/</span><br><span class="line">sudo ssh user@linux1 &quot;sudo openssl ca -config /etc/ssl/openssl.cnf \</span><br><span class="line">    -extensions server_cert -days 1825 -notext -md sha256 \</span><br><span class="line">    -in /tmp/skills.csr \</span><br><span class="line">    -out /tmp/skills.cert.pem \</span><br><span class="line">    -batch&quot;</span><br></pre></td></tr></table></figure>
+
+<p>这个命令使用 <code>ca.cert.pem</code> 和 <code>ca.key.pem</code> 签署了 <code>skills.csr</code>，并生成了名为 <code>skills.cert.pem</code> 的证书。</p>
+<p>最后，将 <code>skills.cert.pem</code> 和 <code>skills.key</code> 文件复制到需要证书的 Linux 服务器的 <code>/etc/ssl</code> 目录：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo scp user@linux1:/tmp/skills.cert.pem /etc/ssl/</span><br><span class="line">sudo scp user@linux1:/tmp/skills.key /etc/ssl/</span><br><span class="line">sudo chmod 644 /etc/ssl/skills.cert.pem</span><br><span class="line">sudo chmod 400 /etc/ssl/skills.key</span><br></pre></td></tr></table></figure>
+
+<p>现在，<code>linux1</code> 作为 CA 服务器可以为其他 Linux 主机颁发证书让我们继续完善 HTTPS 服务器的配置。</p>
+<p>首先，在 <code>linux1</code> 上安装 Apache2：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install apache2</span><br></pre></td></tr></table></figure>
+
+<p>然后，在 <code>linux1</code> 上创建一个名为 <code>skills.lan.cnf</code> 的配置文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[req]</span><br><span class="line">default_bits = 2048</span><br><span class="line">prompt = no</span><br><span class="line">default_md = sha256</span><br><span class="line">distinguished_name = dn</span><br><span class="line"></span><br><span class="line">[dn]</span><br><span class="line">C = CN</span><br><span class="line">ST = Beijing</span><br><span class="line">L = Beijing</span><br><span class="line">O = skills</span><br><span class="line">OU = system</span><br><span class="line">CN = skills.lan</span><br></pre></td></tr></table></figure>
+
+<p>这个配置文件用于创建服务器证书签名请求。</p>
+<p>接下来，在 <code>linux1</code> 上生成一个服务器证书签名请求：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo openssl req -new -config skills.lan.cnf -keyout skills.key -out skills.csr</span><br></pre></td></tr></table></figure>
+
+<p>这个命令将生成一个名为 <code>skills.key</code> 的私钥和一个名为 <code>skills.csr</code> 的证书签名请求。</p>
+<p>然后，将 <code>skills.csr</code> 文件复制到 <code>linux1</code> 上，并使用 <code>ca.cert.pem</code> 和 <code>ca.key.pem</code> 为证书签名请求签名：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo scp skills.csr user@linux1:/tmp/</span><br><span class="line">sudo ssh user@linux1 &quot;sudo openssl ca -config /etc/ssl/openssl.cnf \</span><br><span class="line">    -extensions server_cert -days 1825 -notext -md sha256 \</span><br><span class="line">    -in /tmp/skills.csr \</span><br><span class="line">    -out /tmp/skills.cert.pem \</span><br><span class="line">    -batch&quot;</span><br></pre></td></tr></table></figure>
+
+<p>这个命令使用 <code>ca.cert.pem</code> 和 <code>ca.key.pem</code> 签署了 <code>skills.csr</code>，并生成了名为 <code>skills.cert.pem</code> 的服务器证书。</p>
+<p>接下来，为 Apache2 配置 SSL：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo a2enmod ssl</span><br><span class="line">sudo cp /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-available/skills-ssl.conf</span><br><span class="line">sudo vi /etc/apache2/sites-available/skills-ssl.conf</span><br></pre></td></tr></table></figure>
+
+<p>这个命令将复制默认的 SSL 配置文件，并将其重命名为 <code>skills-ssl.conf</code>。然后使用 vi 编辑器打开 <code>skills-ssl.conf</code> 文件，将以下内容添加到文件的末尾：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SSLEngine on</span><br><span class="line">SSLCertificateFile /etc/ssl/skills.cert.pem</span><br><span class="line">SSLCertificateKeyFile /etc/ssl/skills.key</span><br></pre></td></tr></table></figure>
+
+<p>保存并关闭文件。</p>
+<p>接下来，启用 <code>skills-ssl.conf</code> 配置文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo a2ensite skills-ssl.conf</span><br></pre></td></tr></table></figure>
+
+<p>然后重新启动 Apache2：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service apache2 restart</span><br></pre></td></tr></table></figure>
+
+<p>现在，当用户访问 <code>https://skills.lan</code> 时，Apache2 将使用 <code>skills.cert.pem</code> 和 <code>skills.key</code> 文件提供 HTTPS 服务。并且，因为我们已经在 <code>linux1</code> 作为 CA 服务器为所有 Linux 主机颁发了证书，所以当用户访问其他 Linux 主机上的 HTTPS 站点时，不会出现证书警告信息。</p>
+<p>最后，让我们在其他 Linux 主机上测试 HTTPS 站点。</p>
+<p>首先，让我们在 <code>linux2</code> 上测试 HTTPS 站点：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install openssl</span><br><span class="line">openssl s_client -connect linux1:443</span><br></pre></td></tr></table></figure>
+
+<p>这个命令将使用 OpenSSL 的 <code>s_client</code> 工具连接到 <code>linux1</code> 上的 HTTPS 站点。如果一切正常，您将看到类似于以下内容的输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">CONNECTED(00000003)</span><br><span class="line">depth=1 C = CN, ST = Beijing, L = Beijing, O = skills, OU = system, CN = skills.lan</span><br><span class="line">verify return:1</span><br><span class="line">depth=0 C = CN, ST = Beijing, L = Beijing, O = skills, OU = system, CN = skills.lan</span><br><span class="line">verify return:1</span><br><span class="line">---</span><br><span class="line">Certificate chain</span><br><span class="line"> 0 s:C = CN, ST = Beijing, L = Beijing, O = skills, OU = system, CN = skills.lan</span><br><span class="line">   i:C = CN, ST = Beijing, L = Beijing, O = skills, OU = system, CN = skills.lan</span><br><span class="line">---</span><br><span class="line">Server certificate</span><br><span class="line">-----BEGIN CERTIFICATE-----</span><br><span class="line">MIID...&lt;省略&gt;...QT7H</span><br><span class="line">-----END CERTIFICATE-----</span><br><span class="line">subject=C = CN, ST = Beijing, L = Beijing, O = skills, OU = system, CN = skills.lan</span><br><span class="line"></span><br><span class="line">issuer=C = CN, ST = Beijing, L = Beijing, O = skills, OU = system, CN = skills.lan</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">No client certificate CA names sent</span><br><span class="line">Peer signing digest: SHA256</span><br><span class="line">Peer signature type: RSA-PSS</span><br><span class="line">Server Temp Key: X25519, 253 bits</span><br><span class="line">---</span><br><span class="line">SSL handshake has read 1077 bytes and written 481 bytes</span><br><span class="line">Verification: OK</span><br><span class="line">---</span><br><span class="line">New, TLSv1.3, Cipher is TLS_AES_256_GCM_SHA384</span><br><span class="line">Server public key is 2048 bit</span><br><span class="line">Secure Renegotiation IS supported</span><br><span class="line">Compression: NONE</span><br><span class="line">Expansion: NONE</span><br><span class="line">No ALPN negotiated</span><br><span class="line">Early data was not sent</span><br><span class="line">Verify return code: 0 (ok)</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<p>如果您看到上面的输出，则表示 HTTPS 站点已成功配置。</p>
+<p>接下来，让我们在另一台 Linux 主机上测试 HTTPS 站点。假设该主机的 IP 地址为 <code>192.168.1.100</code>，请使用浏览器访问 <code>https://skills.lan</code>。如果您使用的是 Firefox 浏览器，可能会出现以下对话框：</p>
+<p><img src="https://i.imgur.com/3Edd6wh.png" alt="Firefox security warning"></p>
+<p>这是因为 Firefox 不信任我们刚刚创建的自签名证书。单击 “Advanced…”，然后单击 “Accept the Risk and Continue”，即可访问 HTTPS 站点。</p>
+<p>如果您使用的是 Chrome 浏览器，则不需要进行任何特殊操作。Chrome 将默认信任我们刚刚创建的自签名证书。</p>
+<p>至此，我们已经成功地创建了 DNS 服务器、NTP 服务器、SSH 服务器、HTTPS 服务器和 CA 服务器，并为所有 Linux 主机提供了冗余 DNS 正反向解析服务和证书颁发服务。</p>
+<p>最后一步是将证书和私钥文件复制到需要证书的 Linux 服务器的 <code>/etc/ssl</code> 目录。我们已经为 <code>linux1</code> 上的 HTTPS 服务器创建了证书和私钥文件。现在，我们将这些文件复制到 <code>linux2</code> 上。</p>
+<p>假设您已经在 <code>linux1</code> 上创建了证书和私钥文件，那么请使用以下命令将它们复制到 <code>linux2</code> 上：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo scp /etc/ssl/skills.crt /etc/ssl/skills.key linux2:/etc/ssl/</span><br></pre></td></tr></table></figure>
+
+<p>这个命令将 <code>linux1</code> 上的 <code>/etc/ssl/skills.crt</code> 和 <code>/etc/ssl/skills.key</code> 文件复制到 <code>linux2</code> 上的 <code>/etc/ssl/</code> 目录中。</p>
+<p>现在，我们已经在 <code>linux2</code> 上复制了证书和私钥文件，让我们使用以下命令验证 <code>linux2</code> 上的 HTTPS 服务器是否工作正常：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install openssl</span><br><span class="line">openssl s_client -connect linux2:443</span><br></pre></td></tr></table></figure>
+
+<p>这个命令将使用 OpenSSL 的 <code>s_client</code> 工具连接到 <code>linux2</code> 上的 HTTPS 站点。如果一切正常，您将看到类似于以下内容的输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">CONNECTED(00000003)</span><br><span class="line">depth=1 C = CN, ST = Beijing, L = Beijing, O = skills, OU = system, CN = skills.lan</span><br><span class="line">verify return:1</span><br><span class="line">depth=0 C = CN, ST = Beijing, L = Beijing, O = skills, OU = system, CN = skills.lan</span><br><span class="line">verify return:1</span><br><span class="line">---</span><br><span class="line">Certificate chain</span><br><span class="line"> 0 s:C = CN, ST = Beijing, L = Beijing, O = skills, OU = system, CN = skills.lan</span><br><span class="line">   i:C = CN, ST = Beijing, L = Beijing, O = skills, OU = system, CN = skills.lan</span><br><span class="line">---</span><br><span class="line">Server certificate</span><br><span class="line">-----BEGIN CERTIFICATE-----</span><br><span class="line">MIID...&lt;省略&gt;...QT7H</span><br><span class="line">-----END CERTIFICATE-----</span><br><span class="line">subject=C = CN, ST = Beijing, L = Beijing, O = skills, OU = system, CN = skills.lan</span><br><span class="line"></span><br><span class="line">issuer=C = CN, ST = Beijing, L = Beijing, O = skills, OU = system, CN = skills.lan</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">No client certificate CA names sent</span><br><span class="line">Peer signing digest: SHA256</span><br><span class="line">Peer signature type: RSA-PSS</span><br><span class="line">Server Temp Key: X25519, 253 bits</span><br><span class="line">---</span><br><span class="line">SSL handshake has read 1077 bytes and written 481 bytes</span><br><span class="line">Verification: OK</span><br><span class="line">---</span><br><span class="line">New, TLSv1.3, Cipher is TLS_AES_256_GCM_SHA384</span><br><span class="line">Server public key is 2048 bit</span><br><span class="line">Secure Renegotiation IS supported</span><br><span class="line">Compression: NONE</span><br><span class="line">Expansion: NONE</span><br><span class="line">No ALPN negotiated</span><br><span class="line">Early data was not sent</span><br><span class="line">Verify return code: 0 (ok)</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<p>如果您看到上面的输出，则表示 <code>linux2</code> 上的 HTTPS 站点已成功配置。</p>
+<p>至此，我们已经完成了所有任务，成功地创建了 DNS 服务器、NTP 服务器、SSH 服务器、HTTPS 服务器和 CA 服务器，并为所有 Linux 主机提供了冗余 DNS 正反向解析服务和证书颁发服务。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/posts/1002/" data-id="clgtiq4s600024os65gvbajf0" data-title="dns服务" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/posts/1001/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          ansible服务
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/posts/1003/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/posts/1002/">apache2服务器</a>
+          </li>
+        
+          <li>
+            <a href="/posts/1004/">tomcat服务</a>
+          </li>
+        
+          <li>
+            <a href="/posts/1001/">ansible服务</a>
+          </li>
+        
+          <li>
+            <a href="/posts/1002/">dns服务</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

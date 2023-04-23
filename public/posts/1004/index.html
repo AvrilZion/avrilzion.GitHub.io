@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>tomcat服务 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="配置linux2为nginx服务器  a. 安装Nginx 使用以下命令安装Nginx： 12sudo apt-get updatesudo apt-get install nginx  b. 配置默认文档 默认情况下，Nginx的默认文档是index.html。打开默认文档的配置文件，并将默认文档修改为”hellonginx”： 1sudo vim &#x2F;etc&#x2F;nginx&#x2F;sites-avail">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tomcat服务">
+<meta property="og:url" content="http://example.com/posts/1004/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="配置linux2为nginx服务器  a. 安装Nginx 使用以下命令安装Nginx： 12sudo apt-get updatesudo apt-get install nginx  b. 配置默认文档 默认情况下，Nginx的默认文档是index.html。打开默认文档的配置文件，并将默认文档修改为”hellonginx”： 1sudo vim &#x2F;etc&#x2F;nginx&#x2F;sites-avail">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-04-21T16:07:10.000Z">
+<meta property="article:modified_time" content="2023-04-22T23:19:14.294Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-tomcat服务" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/posts/1004/" class="article-date">
+  <time class="dt-published" datetime="2023-04-21T16:07:10.000Z" itemprop="datePublished">2023-04-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      tomcat服务
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>配置linux2为nginx服务器</li>
+</ol>
+<p>a. 安装Nginx</p>
+<p>使用以下命令安装Nginx：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install nginx</span><br></pre></td></tr></table></figure>
+
+<p>b. 配置默认文档</p>
+<p>默认情况下，Nginx的默认文档是index.html。打开默认文档的配置文件，并将默认文档修改为”hellonginx”：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/nginx/sites-available/default</span><br></pre></td></tr></table></figure>
+
+<p>找到index指令，将其修改为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">index  hellonginx;</span><br></pre></td></tr></table></figure>
+
+<p>保存并退出文件。</p>
+<p>c. 配置HTTPS</p>
+<p>安装certbot工具来申请免费的Let’s Encrypt SSL证书：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install certbot python3-certbot-nginx</span><br></pre></td></tr></table></figure>
+
+<p>运行以下命令为Nginx服务器配置HTTPS：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo certbot --nginx -d your-domain-name</span><br></pre></td></tr></table></figure>
+
+<p>将your-domain-name替换为您的域名。按照命令提示完成配置。</p>
+<p>d. 配置HTTP重定向到HTTPS</p>
+<p>为了强制使用HTTPS，可以将所有HTTP请求重定向到HTTPS。打开Nginx配置文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/nginx/nginx.conf</span><br></pre></td></tr></table></figure>
+
+<p>在http块中添加以下代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name your-domain-name;</span><br><span class="line">    return 301 https://$server_name$request_uri;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>将your-domain-name替换为您的域名。保存并退出文件。</p>
+<p>重启Nginx服务以应用更改：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service nginx restart</span><br></pre></td></tr></table></figure>
+
+
+<ol start="2">
+<li>利用nginx反向代理，实现linux3和linux4的tomcat负载均衡</li>
+</ol>
+<p>a. 安装Tomcat</p>
+<p>在linux3和linux4上分别安装Tomcat：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install tomcat9</span><br></pre></td></tr></table></figure>
+
+<p>b. 配置Tomcat</p>
+<p>打开Tomcat的server.xml配置文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/tomcat9/server.xml</span><br></pre></td></tr></table></figure>
+
+<p>添加以下配置，启用AJP协议和负载均衡：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;Connector port=&quot;8009&quot; protocol=&quot;AJP/1.3&quot; redirectPort=&quot;8443&quot; /&gt;</span><br><span class="line">&lt;Engine name=&quot;Catalina&quot; defaultHost=&quot;localhost&quot;&gt;</span><br><span class="line">  &lt;Cluster className=&quot;org.apache.catalina.ha.tcp.SimpleTcpCluster&quot;&gt;</span><br><span class="line">    &lt;Manager className=&quot;org.apache.catalina.ha.session.DeltaManager&quot; expireSessionsOnShutdown=&quot;false&quot; notifyListenersOnReplication=&quot;true&quot;/&gt;</span><br><span class="line">    &lt;Channel className=&quot;org.apache.catalina.tribes.group.GroupChannel&quot;&gt;</span><br><span class="line">      &lt;Membership className=&quot;org.apache.catalina.tribes.membership.McastService&quot; address=&quot;228.0.0.4&quot; port=&quot;45564&quot; frequency=&quot;500&quot; dropTime=&quot;3000&quot;/&gt;</span><br><span class="line">      &lt;Receiver className=&quot;org.apache.catalina.tribes.transport.nio.NioReceiver&quot; address=&quot;auto&quot; port=&quot;4000&quot; autoBind=&quot;100&quot; selectorTimeout=&quot;5000&quot; maxThreads=&quot;6&quot;/&gt;</span><br><span class="line">      &lt;Sender className=&quot;org.apache.catalina.tribes.transport.ReplicationTransmitter&quot;&gt;</span><br><span class="line">        &lt;Transport className=&quot;org.apache.catalina.tribes.transport.nio.PooledParallelSender&quot;/&gt;</span><br><span class="line">      &lt;/Sender&gt;</span><br><span class="line">      &lt;Interceptor className=&quot;org.apache.catalina.tribes.group.interceptors.TcpFailureDetector&quot;/&gt;</span><br><span class="line">      &lt;Interceptor className=&quot;org.apache.catalina.tribes.group.interceptors.MessageDispatch        /&gt;</span><br><span class="line">    &lt;/Channel&gt;</span><br><span class="line">    &lt;Valve className=&quot;org.apache.catalina.ha.tcp.ReplicationValve&quot; filter=&quot;&quot;/&gt;</span><br><span class="line">    &lt;Valve className=&quot;org.apache.catalina.ha.session.JvmRouteBinderValve&quot;/&gt;</span><br><span class="line">    &lt;ClusterListener className=&quot;org.apache.catalina.ha.session.ClusterSessionListener&quot;/&gt;</span><br><span class="line">  &lt;/Cluster&gt;</span><br><span class="line">&lt;/Engine&gt;</span><br></pre></td></tr></table></figure>
+
+<p>保存并退出文件。</p>
+<p>c. 配置Nginx</p>
+<p>打开Nginx的配置文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/nginx/sites-available/default</span><br></pre></td></tr></table></figure>
+
+<p>添加以下配置，用于反向代理Tomcat服务器：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">upstream tomcat_backend &#123;</span><br><span class="line">    server linux3:8080 weight=5;</span><br><span class="line">    server linux4:8080 weight=5;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen 443 ssl;</span><br><span class="line">    server_name tomcat.skills.lan;</span><br><span class="line"></span><br><span class="line">    ssl_certificate /etc/ssl/skills.jks;</span><br><span class="line">    ssl_certificate_key /etc/ssl/skills.jks;</span><br><span class="line">    ssl_protocols TLSv1.2 TLSv1.3;</span><br><span class="line">    ssl_ciphers HIGH:!aNULL:!MD5;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://tomcat_backend;</span><br><span class="line">        proxy_set_header Host $host;</span><br><span class="line">        proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name tomcat.skills.lan;</span><br><span class="line">    return 301 https://$server_name$request_uri;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>将upstream指令中的服务器地址和端口修改为您的Tomcat服务器的地址和端口。将ssl_certificate和ssl_certificate_key指令中的路径修改为您的SSL证书路径。保存并退出文件。</p>
+<p>重启Nginx服务以应用更改：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service nginx restart</span><br></pre></td></tr></table></figure>
+
+
+<ol start="3">
+<li>配置linux3和linux4为Tomcat服务器</li>
+</ol>
+<p>a. 配置默认首页</p>
+<p>在Tomcat的webapps目录下创建ROOT文件夹，并在该文件夹中创建index.jsp文件。打开index.jsp文件，并将默认内容修改为”tomcatA”或”tomcatB”：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir /var/lib/tomcat9/webapps/ROOT</span><br><span class="line">sudo vim /var/lib/tomcat9/webapps/ROOT/index.jsp</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot; pageEncoding=&quot;UTF-8&quot;%&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">	&lt;title&gt;TomcatA&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;h1&gt;TomcatA&lt;/h1&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>保存并退出文件。</p>
+<p>在另一个Tomcat服务器上重复此过程，将index.jsp文件中的内容修改为”tomcatB”。</p>
+<p>b. 配置HTTP和HTTPS</p>
+<p>打开Tomcat的server.xml配置文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/tomcat9/server.xml</span><br></pre></td></tr></table></figure>
+
+<p>在<Connector>元素中添加以下配置，启用HTTP和HTTPS连接：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;Connector port=&quot;80&quot; protocol=&quot;HTTP/1.1&quot;</span><br><span class="line">           connectionTimeout=&quot;20000&quot;</span><br><span class="line">           redirectPort=&quot;443&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;Connector port=&quot;443&quot; protocol=&quot;HTTP/1.1&quot; SSLEnabled=&quot;true&quot;</span><br><span class="line">           maxThreads=&quot;150&quot; scheme=&quot;https&quot; secure=&quot;true&quot;</span><br><span class="line">           keystoreFile=&quot;/etc/ssl/skills.jks&quot;</span><br><span class="line">           keystorePass=&quot;your-password&quot;</span><br><span class="line">           clientAuth=&quot;false&quot; sslProtocol=&quot;TLS&quot; /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>将keystoreFile指令中的路径和keystorePass指令中的密码修改为您的SSL证书路径和密码。保存并退出文件。</p>
+<p>重启Tomcat服务以应用更改：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service tomcat9 restart</span><br></pre></td></tr></table></figure>
+
+<p>在另一个Tomcat服务器上重复此过程。</p>
+<p>现在，您应该能够通过<a target="_blank" rel="noopener" href="https://tomcat.skills.lan访问负载均衡tomcat集群,并在每个tomcat服务器上看到不同的默认首页内容./">https://tomcat.skills.lan访问负载均衡Tomcat集群，并在每个Tomcat服务器上看到不同的默认首页内容。</a></p>
+<p>以上就是采用Tomcat搭建动态网站的完整步骤。希望这对您有所帮助！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/posts/1004/" data-id="clgtiq4t900044os6gyvbhe46" data-title="tomcat服务" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/posts/1002/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          apache2服务器
+        
+      </div>
+    </a>
+  
+  
+    <a href="/posts/1001/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">ansible服务</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/posts/1003/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/posts/1002/">apache2服务器</a>
+          </li>
+        
+          <li>
+            <a href="/posts/1004/">tomcat服务</a>
+          </li>
+        
+          <li>
+            <a href="/posts/1001/">ansible服务</a>
+          </li>
+        
+          <li>
+            <a href="/posts/1002/">dns服务</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
