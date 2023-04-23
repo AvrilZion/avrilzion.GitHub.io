@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: zion-blog
 subtitle: ''
 description: ''
 keywords:
-author: John Doe
+author: avrilzion
 language: zh-CN
 timezone: ''
 
@@ -103,6 +103,11 @@ ignore:
 #theme: landscape
 #theme: cactus
 theme: butterfly
+
+nav:
+  logo: #image
+  display_title: true
+  fixed: false # fixed navigation bar
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
